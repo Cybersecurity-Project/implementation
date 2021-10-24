@@ -20,27 +20,29 @@
        <div class="dropdown-row">
           <div class="gen-select">
               <div class="switch-button">
-                <input class="switch-button-checkbox" id="gen-select-button" type="checkbox">
+                <input class="switch-button-checkbox" id="gen-select-button" type="checkbox" onclick="check()">
                 <label class="switch-button-label" for="gen-select-button">
                   <span class="switch-button-label-span">Encryption</span>
                 </label>
               </div>
         </div>
 
-        <div class="select-dropdown">
-            <select name="method" id="method-type">
+        <div class="select-dropdown" id="encryption">
+            <select name="encMethod" id="method-type">
               <option value="Encryption Method" disabled selected>Encryption Method</option>
               <option value="option 1">option 1</option>
               <option value="option 2">option 2</option>
               <option value="option 3">option 3</option>
             </select>
+        </div>
 
-            <select name="method" id="method-type">
-              <option value="Decryption Method" disabled selected>Decryption Method</option>
-              <option value="option 1">option 1</option>
-              <option value="option 2">option 2</option>
-              <option value="option 3">option 3</option>
-            </select>
+        <div class="select-dropdown" id="decryption">
+          <select name="DecMethod" id="method-type">
+            <option value="Decryption Method" disabled selected>Decryption Method</option>
+            <option value="option 1">option 1</option>
+            <option value="option 2">option 2</option>
+            <option value="option 3">option 3</option>
+          </select>
         </div>
         
         <div class="generateDiv">
@@ -62,8 +64,6 @@
 
     </form>
     <script src="encDec.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 </body>
 

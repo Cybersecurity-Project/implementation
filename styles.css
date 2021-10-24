@@ -131,8 +131,6 @@ h2{
 
 button{
   padding: 10px 30px;
-  background-color: #d3d3d3;
-  background-color: #e92322;
   color: white;
   border-radius: 2px;
   font-weight: 700;
@@ -211,6 +209,11 @@ button{
   position: relative;
 }
 
+.switch-button-checkbox:checked + .switch-button-label:before {
+  transform: translateX(160px);
+  transition: transform 100ms linear;
+}
+
 select:not([multiple]) {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -237,3 +240,12 @@ select:not([multiple]) {
 .select-dropdown{
   padding-left: 2vw;
 }
+
+.dont-show {
+  display: none !important;
+}
+
+input:focus {
+  outline: none;
+}
+
