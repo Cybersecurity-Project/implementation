@@ -14,6 +14,7 @@ app = Flask(__name__, static_folder="static")
 # def home(): 
 # 	return render_template("index.html")
 def encryption():
+	message = ''
 	if (request.method == "POST"):
 		# # getting input with name = fname in HTML form
 		first_name = request.form.get("message")
