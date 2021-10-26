@@ -40,8 +40,8 @@ def encryption():
 		
 		# print("decrypted string: ", decMessage)
 
-		return "Encrypted " + message 
-	return render_template("index.html")
+		#return "Encrypted " + message 
+	return render_template("index.html", message = "Encrypted " + message)
 
 if (__name__=='__main__'):
 	app.run(debug=True)
