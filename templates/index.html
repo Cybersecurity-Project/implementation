@@ -46,7 +46,7 @@
       </div>
       
       <div class="generateDiv">
-        <button type="submit" class="generateButton">Generate</button>
+        <button type="submit" class="generateButton" >Generate</button>
       </div>
       
       
@@ -58,15 +58,17 @@
         </div>
         <div class="outputMessage">
           {% if message %}
-            <p class="resultHeader">{{message}}</p>
+            <p class="resultHeader" id="resultMessage">{{message}}</p>
           {% endif %}
-            <p class="resultHeader">Generated Result</p>
+            <!-- <p class="resultHeader">Generated Result</p> -->
         </div>
       </div>
     </main>
 
     </form>
     <script type="text/javascript" src="/static/encDec.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </body>
 

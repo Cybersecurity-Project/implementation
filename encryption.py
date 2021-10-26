@@ -13,6 +13,7 @@ app = Flask(__name__, static_folder="static")
 # @app.route('/home')
 # def home(): 
 # 	return render_template("index.html")
+
 def encryption():
 	message = ''
 	if (request.method == "POST"):
@@ -23,7 +24,6 @@ def encryption():
 		# last_name = request.form.get("lname")
 		# print(last_name)
  
-		message = first_name
 		# # generate a key for encryption and decryption 
 		# key = Fernet.generate_key()
 		
