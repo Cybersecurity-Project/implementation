@@ -123,10 +123,23 @@ h2{
 
 .generateButton{
     height: 50px;
+    width: 5vw;
     box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
     border-radius: 9px;
     background-image: linear-gradient(
       266deg,rgb(141,142,254) 0%,rgb(148,129,246) 100%)
+}
+
+.resetDiv{
+  padding-left: 2vw;
+}
+
+.resetButton{
+    height: 50px;
+    width: 5vw;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
+    border-radius: 9px;
+    background-image: linear-gradient(266deg,rgb(130,212,240) 0%,rgb(122,140,255) 100%)
 }
 
 button{

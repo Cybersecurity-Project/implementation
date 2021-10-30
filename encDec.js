@@ -23,5 +23,3 @@ function check() {
 }
 
 check(); //do not remove because we need to run check() when page loads
-
-console.log(document.getElementById("gen-select-button").checked)
