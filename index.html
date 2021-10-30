@@ -50,7 +50,7 @@
         </div>
 
         <div class="resetDiv">
-          <button class="resetButton">Reset</button>
+          <button class="resetButton" onclick="resetResults()">Reset</button>
         </div>
         
         
@@ -61,7 +61,13 @@
             <input name="message" placeholder="Enter Message Here" aria-label="description" class="message" value>
           </div>
           <div class="outputMessage">
-            <p class="resultHeader">Generated Result</p>
+            <div style="width: 100%;">
+              <p class="resultHeader">Generated Result</p>
+              <span id="results"></span>
+            </div>
+            
+            
+            
           </div>
         </div>
     </main>

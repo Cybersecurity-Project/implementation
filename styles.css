@@ -262,3 +262,6 @@ input:focus {
   outline: none;
 }
 
+#results{
+  padding: 20px;
+}

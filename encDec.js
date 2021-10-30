@@ -14,6 +14,11 @@ function hideENC() {
     //console.log("hideENC+showDEC");
 }
 
+function resetResults() {
+    var text = document.getElementById("results").innerHTML = "";
+    //console.log("hideENC+showDEC");
+}
+
 function check() {
     if (document.getElementById("gen-select-button").checked) { //remember gen-select-button is unchecked by default when page loads
         hideENC();
