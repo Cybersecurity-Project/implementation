@@ -123,7 +123,6 @@ h2{
 
 .generateButton{
     height: 50px;
-    width: 5vw;
     box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
     border-radius: 9px;
     background-image: linear-gradient(
@@ -136,7 +135,6 @@ h2{
 
 .resetButton{
     height: 50px;
-    width: 5vw;
     box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
     border-radius: 9px;
     background-image: linear-gradient(266deg,rgb(130,212,240) 0%,rgb(122,140,255) 100%)
@@ -239,10 +237,9 @@ select:not([multiple]) {
   padding: .5em;
   padding-right: 1.5em;
   border-radius: 0;
-  width: 80px;
   color: white;
-  width: 10vw;
-  height: 3.5vh;
+  width: 15vw;
+  height: 45px;
   box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
   border-radius: 10px;
   background-color: #e8e8e8;
