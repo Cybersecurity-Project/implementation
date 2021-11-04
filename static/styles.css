@@ -129,6 +129,17 @@ h2{
       266deg,rgb(141,142,254) 0%,rgb(148,129,246) 100%)
 }
 
+.resetDiv{
+  padding-left: 2vw;
+}
+
+.resetButton{
+    height: 50px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
+    border-radius: 9px;
+    background-image: linear-gradient(266deg,rgb(130,212,240) 0%,rgb(122,140,255) 100%)
+}
+
 button{
   padding: 10px 30px;
   color: white;
@@ -226,10 +237,9 @@ select:not([multiple]) {
   padding: .5em;
   padding-right: 1.5em;
   border-radius: 0;
-  width: 80px;
   color: white;
-  width: 10vw;
-  height: 3.5vh;
+  width: 15vw;
+  height: 45px;
   box-shadow: 0 5px 10px rgb(0 0 0 / 80%);
   border-radius: 10px;
   background-color: #e8e8e8;
@@ -249,3 +259,6 @@ input:focus {
   outline: none;
 }
 
+#results{
+  padding: 20px;
+}

@@ -14,10 +14,16 @@ function hideENC() {
     //console.log("hideENC+showDEC");
 }
 
+function resetResults() {
+    var text = document.getElementById("results").innerHTML = "";
+    //console.log("hideENC+showDEC");
+}
+
 function check() {
     if (document.getElementById("gen-select-button").checked) { //remember gen-select-button is unchecked by default when page loads
         hideENC();
-    } else {
+    } 
+    else {
         hideDEC();
     }
 }
@@ -25,25 +31,26 @@ function check() {
 check(); //do not remove because we need to run check() when page loads
 
 console.log(document.getElementById("gen-select-button").checked)
-
 let submit = document.querySelector(".generateButton");
+
 //shows message when generates message
-submit.addEventListener('click', (e) => {
-    $("p").text("resultMessage").show(); 
-    let x = document.getElementById("resultMessage").textContent;
+submit.addEventListener('submit', (e) => {
+    // e.preventDefault();
+    console.log(submit.textContent);
+    $("p.resultHeader").show(); 
+    let x = document.getElementById("results").textContent;
     console.log(x);
     e.preventDefault();
 });
 
-function showMsg(e) {
-    $("p").text("resultMessage").show(); 
-    e.preventDefault();
+function showMsg() {
+    $("p.resultHeader").show(); 
 }
 
 //runs function on page load
 function hideMsg() {
     // let x = document.getElementById("resultMessage").textContent;
-    $("p").text("resultMessage").hide(); 
+    $("p.resultHeader").hide(); 
 }
 
-window.onload = hideMsg;
+// window.onload = hideMsg;
