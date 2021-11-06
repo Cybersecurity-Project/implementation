@@ -31,26 +31,33 @@ function check() {
 check(); //do not remove because we need to run check() when page loads
 
 console.log(document.getElementById("gen-select-button").checked)
-let submit = document.querySelector(".generateButton");
+
+// let ifSelected = document.getElementById("encMethod");
+// function unselectedAlert() {
+//     console.log(ifSelected);
+// }
+let submit = getElementsByClassName(".generateButton");
 
 //shows message when generates message
-submit.addEventListener('submit', (e) => {
-    // e.preventDefault();
-    console.log(submit.textContent);
-    $("p.resultHeader").show(); 
-    let x = document.getElementById("results").textContent;
-    console.log(x);
-    e.preventDefault();
+submit.addEventListener('click', (e) => {
+    // alert("HI");
+//     // e.preventDefault();
+//     // console.log(submit.textContent);
+//     // console.log("40");
+//     // $("p.resultHeader").show(); 
+//     // let x = document.getElementById("results").textContent;
+//     // console.log(x);
+//     // e.preventDefault();
 });
 
-function showMsg() {
-    $("p.resultHeader").show(); 
-}
+// function showMsg() {
+//     $("p.resultHeader").show(); 
+// }
 
-//runs function on page load
-function hideMsg() {
-    // let x = document.getElementById("resultMessage").textContent;
-    $("p.resultHeader").hide(); 
-}
+// //runs function on page load
+// function hideMsg() {
+//     // let x = document.getElementById("resultMessage").textContent;
+//     $("p.resultHeader").hide(); 
+// }
 
 // window.onload = hideMsg;

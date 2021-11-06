@@ -18,11 +18,58 @@ def home():
 @app.route('/encryption', methods =["GET", "POST"])
 def encryption():
 	message = ''
+	cipherSelection = ''
+	requestedEnc = request.form.get('encMethod')
+	print(requestedEnc)
+	
 	if (request.method == "POST"):
 		output = request.form.to_dict()
 		message = output["message"]
 
-	return render_template("index.html", message = 'Encrypted ' + message)
+		# checks which cipher was selected
+		if (requestedEnc == "Caesar Cipher"):
+			cipherSelection = "Caesar Cipher: "
+			message = caesarCipher(message)
+			print(message)
+		elif (requestedEnc == "Reverse Cipher"):
+			cipherSelection = "Reverse Cipher: "
+			message = reverseCipher(message)
+			print(message)
+		else:
+			print("hello")
+			
+
+	return render_template("index.html", message = 'Encrypted ' + cipherSelection + message)
+
+# function to produce a caesar cipher message
+def caesarCipher(msg):
+	cipherMsg = ''
+	shiftNum = 4
+
+	# traverse through the message
+	for i in range(len(msg)):
+		char = msg[i]
+
+		# Encrypt uppercase characters
+		if (char.isupper()):
+			cipherMsg += chr((ord(char) + shiftNum - 65) % 26 + 65)
+        # Encrypt lowercase characters
+		else:
+			cipherMsg += chr((ord(char) + shiftNum - 97) % 26 + 97)
+		
+	return cipherMsg
+	# return render_template("index.html", message = "Hello")
+
+# function to produce a reverse cipher message
+def reverseCipher(msg):
+	cipherMsg = ''
+
+	i = len(msg) - 1
+	while (i >= 0):
+		cipherMsg += msg[i]
+		i -= 1
+		
+	return cipherMsg
 
 # edited out for now
 def encryption2():

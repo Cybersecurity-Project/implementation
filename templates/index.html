@@ -33,10 +33,10 @@
 
         <div class="select-dropdown" id="encryption">
             <select name="encMethod" id="method-type">
-              <option value="Encryption Method" disabled selected>Encryption Method</option>
-              <option value="option 1">option 1</option>
-              <option value="option 2">option 2</option>
-              <option value="option 3">option 3</option>
+              <option id="encMethod" value="Encryption Method" disabled selected>Encryption Method</option>
+              <option name="caesarCipher" value="Caesar Cipher">Caesar Cipher</option>
+              <option name="reverseCipher" value="Reverse Cipher">Reverse Cipher</option>
+              <option name="option3" value="option 3">option 3</option>
             </select>
         </div>
 
@@ -50,7 +50,7 @@
         </div>
         
         <div class="generateDiv">
-          <button type="submit" class="generateButton" action="/encryption" method="post">Generate</button>
+          <button type="submit" onclick="unselectedAlert()" class="generateButton" action="/encryption" method="post">Generate</button>
         </div>
 
         <div class="resetDiv">
@@ -71,7 +71,10 @@
                 <span id="results">{{message}}</span>
               </div>
             {% endif %}
-
+            {% if hi %}
+              <p class="resultHeader">Generated Result2</p>
+              <span id="results">{{hi}}</span>
+            {% endif %}
             
             
             
