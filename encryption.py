@@ -20,29 +20,37 @@ def encryption():
 	message = ''
 	cipherSelection = ''
 	requestedEnc = request.form.get('encMethod')
-	print(requestedEnc)
+	requestedDec = request.form.get('decMethod')	
 	
 	if (request.method == "POST"):
 		output = request.form.to_dict()
 		message = output["message"]
 
 		# checks which cipher was selected
-		if (requestedEnc == "Caesar Cipher"):
-			cipherSelection = "Caesar Cipher: "
-			message = caesarCipher(message)
+		if (requestedEnc == "Caesar Cipher"): #encrypting caesar cipher
+			cipherSelection = "Encrypting Caesar Cipher: "
+			message = encCaesarCipher(message)
 			print(message)
-		elif (requestedEnc == "Reverse Cipher"):
+		elif (requestedEnc == "Reverse Cipher"): #encrypting reverse cipher
 			cipherSelection = "Reverse Cipher: "
-			message = reverseCipher(message)
+			message = encReverseCipher(message)
+			print(message)
+		elif (requestedDec == "Caesar Cipher"): #decrypting caesar cipher
+			cipherSelection = "Decrypting Caesar Cipher: "
+			message = str(decCaesarCipher(message))
+			# print(message, "42")
+		elif (requestedDec == "Reverse Cipher"): #decrypting reverse cipher
+			cipherSelection = "Decrypting Caesar Cipher: "
+			message = decReverseCipher(message)
 			print(message)
 		else:
-			print("hello")
+			print("Select an Encryption/Decryption Scheme")
 			
 
-	return render_template("index.html", message = 'Encrypted ' + cipherSelection + message)
+	return render_template("index.html", message = cipherSelection  + message)
 
-# function to produce a caesar cipher message
-def caesarCipher(msg):
+# function to encrypt a caesar cipher message
+def encCaesarCipher(msg):
 	cipherMsg = ''
 	shiftNum = 4
 
@@ -50,8 +58,10 @@ def caesarCipher(msg):
 	for i in range(len(msg)):
 		char = msg[i]
 
+		if (char == " " or char == "," or char == "/" or char == "." or char == ""):
+			cipherMsg += char
 		# Encrypt uppercase characters
-		if (char.isupper()):
+		elif (char.isupper()):
 			cipherMsg += chr((ord(char) + shiftNum - 65) % 26 + 65)
         # Encrypt lowercase characters
 		else:
@@ -60,8 +70,8 @@ def caesarCipher(msg):
 	return cipherMsg
 	# return render_template("index.html", message = "Hello")
 
-# function to produce a reverse cipher message
-def reverseCipher(msg):
+# function to encrypt a reverse cipher message
+def encReverseCipher(msg):
 	cipherMsg = ''
 
 	i = len(msg) - 1
@@ -70,6 +80,68 @@ def reverseCipher(msg):
 		i -= 1
 		
 	return cipherMsg
+
+# function to decrypt a caesar cipher message
+def decCaesarCipher(msg):
+	# encryptedMsg = msg
+	# letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+	# for i in range(len(letters)):
+	# 	translated = ''
+
+	# 	for j in encryptedMsg:
+	# 		if j in letters:
+	# 			num = letters.find(j)
+	# 			print(num)
+	# 			num = num - i
+
+	# 			if num < 0:
+	# 				num += len(letters)
+	# 			translated += letters[num]
+	# 		else:
+	# 			translated += j
+	# print(translated, "102")
+	encryptedMsg = msg
+	letters = "abcdefghijklmnopqrstuvwxyz"
+	x = 0
+	decryptedDict = {}
+	while x < 26:
+		x += 1
+		decString = ""
+		strToDecrypt = encryptedMsg.lower()
+		ciphershift = int(x)
+		for char in strToDecrypt:
+			position = letters.find(char)
+			newPosition = position - ciphershift
+			if (char == " " or char == "," or char == "/" or char == "." or char == ""):
+				decString += char
+			elif char in letters:
+				decString += letters[newPosition]
+			else:
+				decString += char
+		ciphershift = str(ciphershift)
+		# print(decString)
+		decryptedDict[x] = decString
+	# print(decryptedDict)
+		# print("You used a cipher shift of " + ciphershift)
+		# print("Your decrypted message reads: ")
+		# print(decString)
+		# print("\n")
+	# print(decString, "124")
+	# print("\n")
+
+	return decryptedDict
+
+# function to decrypt a reverse cipher message
+def decReverseCipher(msg):
+	decMsg = ''
+
+	i = len(msg) - 1
+	while (i >= 0):
+		decMsg += msg[i]
+		i -= 1
+		
+	return decMsg
 
 # edited out for now
 def encryption2():
