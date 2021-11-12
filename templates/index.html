@@ -68,15 +68,11 @@
             {% if message %}
               <div style="width: 100%;">
                 <p class="resultHeader">Generated Result</p>
+                {% autoescape false %}
                 <span id="results">{{message}}</span>
+                {% endautoescape %}
               </div>
             {% endif %}
-            <!-- {% if hi %}
-              <p class="resultHeader">Generated Result2</p>
-              <span id="results">{{hi}}</span>
-            {% endif %}
-             -->
-            
             
           </div>
         </div>

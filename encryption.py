@@ -3,7 +3,6 @@ from cryptography.fernet import Fernet
 # importing Flask and other modules
 from flask import Flask, request, redirect, render_template, flash
 
-
 # Flask constructor
 app = Flask(__name__, static_folder="static")
 
@@ -36,17 +35,20 @@ def encryption():
 			message = encReverseCipher(message)
 			print(message)
 		elif (requestedDec == "Caesar Cipher"): #decrypting caesar cipher
-			cipherSelection = "Decrypting Caesar Cipher: "
+			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = str(decCaesarCipher(message))
-			# print(message, "42")
+			message = message.strip("'{")
+			message = message.replace(",", "<br>")
+			# message = message.replace(",", "\n")
+			print(message)
 		elif (requestedDec == "Reverse Cipher"): #decrypting reverse cipher
-			cipherSelection = "Decrypting Caesar Cipher: "
+			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = decReverseCipher(message)
 			print(message)
 		else:
 			print("Select an Encryption/Decryption Scheme")
 			
-	return render_template("index.html", message = cipherSelection  + message)
+	return render_template("index.html", message = cipherSelection + message)
 
 # function to encrypt a caesar cipher message
 def encCaesarCipher(msg):
@@ -90,24 +92,6 @@ def encReverseCipher(msg):
 
 # function to decrypt a caesar cipher message
 def decCaesarCipher(msg):
-	# encryptedMsg = msg
-	# letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-	# for i in range(len(letters)):
-	# 	translated = ''
-
-	# 	for j in encryptedMsg:
-	# 		if j in letters:
-	# 			num = letters.find(j)
-	# 			print(num)
-	# 			num = num - i
-
-	# 			if num < 0:
-	# 				num += len(letters)
-	# 			translated += letters[num]
-	# 		else:
-	# 			translated += j
-	# print(translated, "102")
 	encryptedMsg = msg
 	letters = "abcdefghijklmnopqrstuvwxyz"
 	shiftNum = 4
