@@ -46,7 +46,6 @@ def encryption():
 		else:
 			print("Select an Encryption/Decryption Scheme")
 			
-
 	return render_template("index.html", message = cipherSelection  + message)
 
 # function to encrypt a caesar cipher message
@@ -58,14 +57,22 @@ def encCaesarCipher(msg):
 	for i in range(len(msg)):
 		char = msg[i]
 
-		if (char == " " or char == "," or char == "/" or char == "." or char == ""):
-			cipherMsg += char
+		# Encrypt numbers
+		if (char.isdigit()):
+			char_new = (int(char) + shiftNum) % 10
+			cipherMsg += str(char_new)
+
 		# Encrypt uppercase characters
 		elif (char.isupper()):
 			cipherMsg += chr((ord(char) + shiftNum - 65) % 26 + 65)
+
         # Encrypt lowercase characters
-		else:
+		elif (char.islower()):
 			cipherMsg += chr((ord(char) + shiftNum - 97) % 26 + 97)
+
+		# Encrypt special characters
+		else:
+			cipherMsg += char
 		
 	return cipherMsg
 	# return render_template("index.html", message = "Hello")
@@ -103,22 +110,35 @@ def decCaesarCipher(msg):
 	# print(translated, "102")
 	encryptedMsg = msg
 	letters = "abcdefghijklmnopqrstuvwxyz"
+	shiftNum = 4
 	x = 0
 	decryptedDict = {}
+	
+	# iterates through all possibilities
 	while x < 26:
 		x += 1
 		decString = ""
 		strToDecrypt = encryptedMsg.lower()
 		ciphershift = int(x)
+
+		# iterates through each character of encrypted msg
 		for char in strToDecrypt:
 			position = letters.find(char)
 			newPosition = position - ciphershift
-			if (char == " " or char == "," or char == "/" or char == "." or char == ""):
-				decString += char
+			
+			# decrypts digits
+			if (char.isdigit()):
+				char_old = (int(char) - shiftNum) % 10
+				decString += str(char_old)
+
+			#decrypts characters
 			elif char in letters:
 				decString += letters[newPosition]
+			
+			# decrypts special characters
 			else:
 				decString += char
+		
 		ciphershift = str(ciphershift)
 		# print(decString)
 		decryptedDict[x] = decString
