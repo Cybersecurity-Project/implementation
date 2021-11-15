@@ -29,14 +29,15 @@
                   <span class="switch-button-label-span">Encryption</span>
                 </label>
               </div>
-        </div>
+          </div>
 
         <div class="select-dropdown" id="encryption">
             <select name="encMethod" id="method-type">
               <option id="encMethod" value="Encryption Method" disabled selected>Encryption Method</option>
               <option name="caesarCipher" value="Caesar Cipher">Caesar Cipher</option>
               <option name="reverseCipher" value="Reverse Cipher">Reverse Cipher</option>
-              <option name="option3" value="option 3">option 3</option>
+              <option name="aes" value="AES">AES (Advanced Encryption Standard)</option>
+              <option name="homomorphicEnc" value="Homomorphic Encryption">Homomorphic Encryption</option>
             </select>
         </div>
 
@@ -45,7 +46,8 @@
             <option name="decMethod" value="Decryption Method" disabled selected>Decryption Method</option>
             <option name="caesarCipher" value="Caesar Cipher">Caesar Cipher</option>
             <option name="reverseCipher" value="Reverse Cipher">Reverse Cipher</option>
-            <option value="option 3">option 3</option>
+            <option name="aes" value="AES">AES (Advanced Encryption Standard)</option>
+            <option name="homomorphicDec" value="Homomorphic Decryption">Homomorphic Decryption</option>
           </select>
         </div>
         
@@ -57,8 +59,7 @@
           <button class="resetButton" onclick="resetResults()">Reset</button>
         </div>
         
-        
-        </div>
+      </div>
 
         <div class="messageContainer">
           <div class="inputMessage">
@@ -69,7 +70,7 @@
               <div style="width: 100%;">
                 <p class="resultHeader">Generated Result</p>
                 {% autoescape false %}
-                <span id="results">{{message}}</span>
+                <span class="results" id="results">{{message}}</span>
                 {% endautoescape %}
               </div>
             {% endif %}

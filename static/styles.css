@@ -76,7 +76,7 @@ h2{
   color: #FFFFFF;
   width: 100%;
   border: 0;
-  height: 75vh;
+  height: 100vh;
   margin: 0;
   display: block;
   padding: 6px 0 7px;
@@ -115,6 +115,15 @@ h2{
     font-family: Poppins;
     font-weight: 500;
     letter-spacing: 0.3px;
+}
+
+.results{
+  color: #6c757d;
+  float: left;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+
 }
 
 .generateDiv{
