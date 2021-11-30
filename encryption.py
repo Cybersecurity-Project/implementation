@@ -3,7 +3,8 @@ from cryptography.fernet import Fernet
 
 # importing Flask and other modules
 from flask import Flask, request, redirect, render_template, flash
-import random
+import random, sys
+from random import randint
 
 # import AES
 from Crypto.Cipher import AES
@@ -35,6 +36,8 @@ def encryption():
 	if (request.method == "POST"):
 		output = request.form.to_dict()
 		message = output["message"]
+		print(output)
+		# print(output["homomorphic-method-type-1"])
 
 		# if (requestedEnc == "AES"):
 		# 	nonce, cipherText, tag = encAES(message)
@@ -53,10 +56,22 @@ def encryption():
 			message = encReverseCipher(message)
 			results = cipherSelection + message
 			print(message)
-		# elif (requestedEnc == "AES"): #AES encryption
-		# 	cipherSelection = "Encrypting Using AES: <br>"
-		# 	results = cipherText
-		# 	print(cipherText)
+		elif (requestedEnc == "Homomorphic Encryption"): #homomorphic encryption
+			print('homomorphic encryption')
+			bit1 = int(output["homomorphic-method-type-1"])
+			bit2 = int(output["homomorphic-method-type-3"])
+			bit3 = int(output["homomorphic-method-type-2"])
+			bit4 = int(output["homomorphic-method-type-4"])
+			message += str(bit1)
+			message += str(bit2)
+			message += str(bit3)
+			message += str(bit4)
+			print(message)
+			results = str(homomorphicEnc(bit1, bit2, bit3, bit4))
+
+			# cipherSelection = "Encrypting Using AES: <br>"
+			# results = cipherText
+			# print(cipherText)
 		elif (requestedDec == "Caesar Cipher"): #decrypting caesar cipher
 			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = str(decCaesarCipher(message))
@@ -69,7 +84,8 @@ def encryption():
 			message = decReverseCipher(message)
 			results = cipherSelection + message
 			print(message)
-		# elif (requestedDec == "AES"): #AES decryption
+		# elif (requestedDec == "Homomorphic Decryption"): #homomorphic decryption
+		# 	print("homomorphic decryption")
 		# 	cipherSelection = "Decrytion of AES: <br>"
 		# 	plaintext = decAES(nonce, cipherText, tag)
 		# 	results = plaintext
@@ -127,6 +143,57 @@ def encAES(msg):
     nonce = cipher.nonce
     cipherText, tag = cipher.encrypt_and_digest(msg.encode('ascii')) #takes msg as bytes
     return nonce, cipherText, tag
+
+# function to encrypt using homomorphic encryption
+def homomorphicEnc(bit1, bit2, bit3, bit4):
+	print(bit3)
+	r1 = randint(1, 5)
+	r2 = randint(1, 5)
+	r3 = randint(1, 5)
+	r4 = randint(1, 5)
+
+	q1 = randint(50000, 60000)
+	q2 = randint(50000, 60000)
+	q3 = randint(50000, 60000)
+	q4 = randint(50000, 60000)
+
+	p = randint(10000, 20000) # private key
+
+	c_bit_bit1 = (q1 * p) + (2 * r1) + bit1
+	c_bit_bit2 = (q2 * p) + (2 * r2) + bit2
+	c_bit_bit3 = (q3 * p) + (2 * r3) + bit3
+	c_bit_bit4 = (q4 * p) + (2 * r4) + bit4
+
+	# Truth Table
+	cipher_text = inv(c_bit_bit2)*c_bit_bit4 
+	+ inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 
+	+ inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
+
+	print("r values:\t",r1,r2,r3,r4)
+	print("q values:\t",q1,q2,q3,q4)
+	print("p value:\t",p)
+
+	print("\nInput bits")
+	print("---------------")
+	print("bit1:\t",bit1, "bit2:\t",bit2)
+	print("bit3:\t",bit3, "bit4:\t",bit4)
+
+	print("\nCipherbits")
+	print("---------------")
+	print("a:\t",c_bit_bit1, "b:\t",c_bit_bit2)
+	print("c:\t",c_bit_bit3, "d:\t",c_bit_bit4)
+
+	print("\nCipher result")
+	print("---------------")
+	print("Result:\t",cipher_text)
+
+	# decrypt value
+	result = (cipher_text % p) % 2
+	return result
+
+# decrements value
+def inv(val):
+	return(val ^ 1)
 
 # function to decrypt a caesar cipher message
 def decCaesarCipher(msg):

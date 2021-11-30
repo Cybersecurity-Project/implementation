@@ -32,11 +32,11 @@
           </div>
 
         <div class="select-dropdown" id="encryption">
-            <select name="encMethod" id="method-type">
+            <select name="encMethod" id="method-type" onchange="toggle()">
               <option id="encMethod" value="Encryption Method" disabled selected>Encryption Method</option>
               <option name="caesarCipher" value="Caesar Cipher">Caesar Cipher</option>
               <option name="reverseCipher" value="Reverse Cipher">Reverse Cipher</option>
-              <option name="aes" value="AES">AES (Advanced Encryption Standard)</option>
+              <!-- <option name="aes" value="AES">AES (Advanced Encryption Standard)</option> -->
               <option name="homomorphicEnc" value="Homomorphic Encryption">Homomorphic Encryption</option>
             </select>
         </div>
@@ -46,13 +46,12 @@
             <option name="decMethod" value="Decryption Method" disabled selected>Decryption Method</option>
             <option name="caesarCipher" value="Caesar Cipher">Caesar Cipher</option>
             <option name="reverseCipher" value="Reverse Cipher">Reverse Cipher</option>
-            <option name="aes" value="AES">AES (Advanced Encryption Standard)</option>
-            <option name="homomorphicDec" value="Homomorphic Decryption">Homomorphic Decryption</option>
+            <!-- <option name="aes" value="AES">AES (Advanced Encryption Standard)</option> -->
           </select>
         </div>
         
         <div class="generateDiv">
-          <button type="submit" onclick="unselectedAlert()" class="generateButton" action="/encryption" method="post">Generate</button>
+          <button type="submit" class="generateButton" action="/encryption" method="post">Generate</button>
         </div>
 
         <div class="resetDiv">
@@ -61,9 +60,49 @@
         
       </div>
 
+      <div id="tutorial-message">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non sagittis magna. Duis euismod 
+          tincidunt sem, ac aliquam erat tempor malesuada. Sed ipsum arcu, laoreet nec enim quis, pretium scelerisque leo. 
+          Aenean eu nisi quam. Vivamus eleifend orci vitae sagittis viverra. Phasellus in condimentum mi, non euismod arcu.
+          Proin dapibus cursus ultrices. Aliquam erat volutpat. Donec eu velit gravida velit suscipit imperdiet. Donec id vestibulum
+          arcu, vel lacinia risus. Nulla ut mi urna. Praesent malesuada sem vel elit ultrices, ut tincidunt urna vestibulum. 
+          Aliquam et egestas tellus, eu egestas metus. Ut vitae lorem eget dolor varius ullamcorper sed rutrum felis. 
+          Duis efficitur ultrices placerat.</span>
+      </div>
+
         <div class="messageContainer">
           <div class="inputMessage">
-            <input name="message" placeholder="Enter Message Here" aria-label="description" class="message" value>
+            <input id="message-box" name="message" placeholder="Enter Message Here" aria-label="description" class="message" value>
+            <div id="homomorphic-choices">
+              <span>Alice:</span>
+              <select name="homomorphic-method-type-1" id="homomorphic-method-type" style="margin-top: 30vh; margin-left: 3vw;">
+                <!-- <option value="choice" disabled selected>Enter Choice</option> -->
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+
+              <span style="margin-left: 0.88vw;">Bob: </span>
+
+              <select name="homomorphic-method-type-2" id="homomorphic-method-type" style="margin-top: 3vh;  margin-left: 2.5vw;">
+                <!-- <option value="choice" disabled selected>Enter Choice</option> -->
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+            </div>
+
+            <div id="homomorphic-choices-2">
+              <select name="homomorphic-method-type-3" id="homomorphic-method-type" style="margin-top: 30vh; margin-left: 3vw;">
+                <!-- <option value="choice" disabled selected>Enter Choice</option> -->
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+
+              <select name="homomorphic-method-type-4" id="homomorphic-method-type"  style="margin-top: 3vh;  margin-left: 3vw;">
+                <!-- <option value="choice" disabled selected>Enter Choice</option> -->
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+            </div>
           </div>
           <div class="outputMessage">
             {% if message %}
