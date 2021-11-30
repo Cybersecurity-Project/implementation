@@ -36,6 +36,8 @@ function hideInput() {
     check2.classList.remove("dont-show");
     var check3 = document.getElementById("homomorphic-choices-2");
     check3.classList.remove("dont-show");
+    var check4 = document.getElementById("tutorial-message");
+    check4.classList.remove("dont-show");
 }
 
 function showInput() {
@@ -45,6 +47,8 @@ function showInput() {
     check2.classList.add("dont-show");
     var check3 = document.getElementById("homomorphic-choices-2");
     check3.classList.add("dont-show");
+    var check4 = document.getElementById("tutorial-message");
+    check4.classList.add("dont-show");
 }
 
 function toggle() {

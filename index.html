@@ -28,7 +28,7 @@
         </div>
 
         <div class="select-dropdown" id="encryption">
-            <select name="encMethod" id="method-type" onchange="toggle(this)">
+            <select name="encMethod" id="method-type" onchange="toggle()">
               <option value="Encryption Method" disabled selected>Encryption Method</option>
               <option value="option 1">option 1</option>
               <option value="option 2">option 2</option>
@@ -56,19 +56,30 @@
         
         </div>
 
+        <div id="tutorial-message">
+          <spam>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non sagittis magna. Duis euismod 
+            tincidunt sem, ac aliquam erat tempor malesuada. Sed ipsum arcu, laoreet nec enim quis, pretium scelerisque leo. 
+            Aenean eu nisi quam. Vivamus eleifend orci vitae sagittis viverra. Phasellus in condimentum mi, non euismod arcu.
+            Proin dapibus cursus ultrices. Aliquam erat volutpat. Donec eu velit gravida velit suscipit imperdiet. Donec id vestibulum
+            arcu, vel lacinia risus. Nulla ut mi urna. Praesent malesuada sem vel elit ultrices, ut tincidunt urna vestibulum. 
+            Aliquam et egestas tellus, eu egestas metus. Ut vitae lorem eget dolor varius ullamcorper sed rutrum felis. 
+            Duis efficitur ultrices placerat.</span>
+        </div>
+
         <div class="messageContainer">
           <div class="inputMessage">
             <input  id="message-box" name="message" placeholder="Enter Message Here" aria-label="description" class="message" value>
 
               <div id="homomorphic-choices">
+                <span>Alice:</span>
                 <select name="homomorphic-method-type-1" id="homomorphic-method-type" style="margin-top: 30vh; margin-left: 3vw;">
-                  <option value="choice" disabled selected>Enter Choice</option>
                   <option value="zero">0</option>
                   <option value="one">1</option>
                 </select>
 
-                <select name="homomorphic-method-type-2" id="homomorphic-method-type" style="margin-top: 3vh;  margin-left: 3vw;">
-                  <option value="choice" disabled selected>Enter Choice</option>
+                <span style="margin-left: 0.88vw;">Bob: </span>
+
+                <select name="homomorphic-method-type-2" id="homomorphic-method-type" style="margin-top: 3vh;  margin-left: 2.5vw;">
                   <option value="zero">0</option>
                   <option value="one">1</option>
                 </select>
@@ -76,18 +87,15 @@
 
               <div id="homomorphic-choices-2">
                 <select name="homomorphic-method-type-3" id="homomorphic-method-type" style="margin-top: 30vh; margin-left: 3vw;">
-                  <option value="choice" disabled selected>Enter Choice</option>
                   <option value="zero">0</option>
                   <option value="one">1</option>
                 </select>
 
                 <select name="homomorphic-method-type-4" id="homomorphic-method-type"  style="margin-top: 3vh;  margin-left: 3vw;">
-                  <option value="choice" disabled selected>Enter Choice</option>
                   <option value="zero">0</option>
                   <option value="one">1</option>
                 </select>
               </div>
-              
           </div>
           <div class="outputMessage">
             <div style="width: 100%;">

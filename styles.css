@@ -270,3 +270,24 @@ input:focus {
 #homomorphic-choices-2{
   height: 75vh;
 }
+
+#homomorphic-message{
+  margin: 0;
+}
+
+#tutorial-message{
+  display: flex;
+  background-color: #1c1929;
+  border-radius: 10px;
+  box-shadow: 0 12px 26px rgb(0 0 0 / 40%);
+  color: rgba(255,255,255,.65);
+  margin-bottom: 20px;
+  flex-grow: 0;
+  max-width: 45%;
+  flex-basis: 50%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+  padding: 20px;
+}
