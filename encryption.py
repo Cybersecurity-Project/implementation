@@ -157,43 +157,69 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 	q4 = randint(50000, 60000)
 
 	p = randint(10000, 20000) # private key
-
+	
+	# Equation: c = p*q + 2*r + m
 	c_bit_bit1 = q1 * p + 2 * r1 + bit1
 	c_bit_bit2 = q2 * p + 2 * r2 + bit2
 	c_bit_bit3 = q3 * p + 2 * r3 + bit3
 	c_bit_bit4 = q4 * p + 2 * r4 + bit4
 
 	# Truth Table
-	cipher_text = inv(c_bit_bit2)*c_bit_bit4 + inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 + inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
+	cipher_text = inv(c_bit_bit2)*c_bit_bit4 
+	+ inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 
+	+ inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
 
-	print("r values:\t",r1,r2,r3,r4)
-	print("q values:\t",q1,q2,q3,q4)
-	print("p value:\t",p)
+	truth_table = "R Values: "
+	truth_table += str(r1) + " " + str(r2) + " " + str(r3) + " " + str(r4) + "<br>"
+	truth_table += "Q Values: "
+	truth_table += str(q1) + " " + str(q2) + " " + str(q3) + " " + str(q4) + "<br>"
+	truth_table += "Private Key: "
+	truth_table += str(p) + "<br><br>"
 
-	print("\nInput bits")
+	truth_table += "Input Bits" + "<br>"
+	truth_table += "---------------" + "<br>"
+	truth_table += "Bit 1: " + "   " + str(bit1) + "&emsp;" + "Bit 2: " + "   " + str(bit2) + "<br>"
+	truth_table += "Bit 3: " + "   " + str(bit3) + "&emsp;" + "Bit 4: " + "   " + str(bit4) + "<br><br>"
+
+	truth_table += "Cipher Bits" + "<br>"
+	truth_table += "---------------" + "<br>"
+	truth_table += "A: " + "   " + str(c_bit_bit1) + "&emsp;" + "B: " + "   " + str(c_bit_bit2) + "<br>"
+	truth_table += "C: " + "   " + str(c_bit_bit3) + "&emsp;" + "D: " + "   " + str(c_bit_bit4) + "<br><br>"
+
+	truth_table += "Cipher Results" + "<br>"
+	truth_table += "---------------" + "<br>"
+	truth_table += "Result: " + "   " + str(cipher_text) + "<br><br>"
+
+	print("R Values:\t", r1, r2, r3, r4)
+	print("Q Values:\t", q1, q2, q3, q4)
+	print("P Value:\t", p)
+
+	print("\nInput Bits")
 	print("---------------")
-	print("bit1:\t",bit1, "bit2:\t",bit2)
-	print("bit3:\t",bit3, "bit4:\t",bit4)
+	print("bit1:\t", bit1, "bit2:\t", bit2)
+	print("bit3:\t", bit3, "bit4:\t", bit4)
 
-	print("\nCipherbits")
+	print("\nCipher Bits")
 	print("---------------")
-	print("a:\t",c_bit_bit1, "b:\t",c_bit_bit2)
-	print("c:\t",c_bit_bit3, "d:\t",c_bit_bit4)
+	print("a:\t", c_bit_bit1, "b:\t", c_bit_bit2)
+	print("c:\t", c_bit_bit3, "d:\t", c_bit_bit4)
 
-	print("\nCipher result")
+	print("\nCipher Result")
 	print("---------------")
-	print("Result:\t",cipher_text)
+	print("Result:\t", cipher_text)
 
 	# decrypt value
 	result = (cipher_text % p) % 2
 
 	# checks result
-	if (result == 0):
-		print("")
+	if (result == 1):
+		print("Siri does not have a higher salary than Alexa")
+		message = "Siri does not have a higher salary than Alexa"
 	else:
-		print("")
+		print("Siri is richer than Alexa")
+		message = "Siri is richer than Alexa"
 
-	return result
+	return truth_table + str(result) + "<br>" + message
 
 # decrements value
 def inv(val):
