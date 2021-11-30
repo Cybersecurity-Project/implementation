@@ -212,9 +212,9 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 	result = (cipher_text % p) % 2
 
 	# checks result
-	if (result == 1):
+	if (result == 0):
 		print("Siri does not have a higher salary than Alexa")
-		message = "Siri does not have a higher salary than Alexa"
+		message = "Siri is not richer than Alexa"
 	else:
 		print("Siri is richer than Alexa")
 		message = "Siri is richer than Alexa"
