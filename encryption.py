@@ -146,7 +146,6 @@ def encAES(msg):
 
 # function to encrypt using homomorphic encryption
 def homomorphicEnc(bit1, bit2, bit3, bit4):
-	print(bit3)
 	r1 = randint(1, 5)
 	r2 = randint(1, 5)
 	r3 = randint(1, 5)
@@ -159,15 +158,13 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 
 	p = randint(10000, 20000) # private key
 
-	c_bit_bit1 = (q1 * p) + (2 * r1) + bit1
-	c_bit_bit2 = (q2 * p) + (2 * r2) + bit2
-	c_bit_bit3 = (q3 * p) + (2 * r3) + bit3
-	c_bit_bit4 = (q4 * p) + (2 * r4) + bit4
+	c_bit_bit1 = q1 * p + 2 * r1 + bit1
+	c_bit_bit2 = q2 * p + 2 * r2 + bit2
+	c_bit_bit3 = q3 * p + 2 * r3 + bit3
+	c_bit_bit4 = q4 * p + 2 * r4 + bit4
 
 	# Truth Table
-	cipher_text = inv(c_bit_bit2)*c_bit_bit4 
-	+ inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 
-	+ inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
+	cipher_text = inv(c_bit_bit2)*c_bit_bit4 + inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 + inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
 
 	print("r values:\t",r1,r2,r3,r4)
 	print("q values:\t",q1,q2,q3,q4)
@@ -189,6 +186,13 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 
 	# decrypt value
 	result = (cipher_text % p) % 2
+
+	# checks result
+	if (result == 0):
+		print("")
+	else:
+		print("")
+
 	return result
 
 # decrements value
