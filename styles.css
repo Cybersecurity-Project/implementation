@@ -262,3 +262,11 @@ input:focus {
 #results{
   padding: 20px;
 }
+
+#homomorphic-choices{
+  height: 75vh;
+}
+
+#homomorphic-choices-2{
+  height: 75vh;
+}
