@@ -36,8 +36,7 @@ def encryption():
 	if (request.method == "POST"):
 		output = request.form.to_dict()
 		message = output["message"]
-		print(output)
-		# print(output["homomorphic-method-type-1"])
+		# print(output)
 
 		# if (requestedEnc == "AES"):
 		# 	nonce, cipherText, tag = encAES(message)
@@ -50,24 +49,20 @@ def encryption():
 			cipherSelection = "Encrypting Caesar Cipher: <br>"
 			message = encCaesarCipher(message)
 			results = cipherSelection + message
-			print(message)
 		elif (requestedEnc == "Reverse Cipher"): #encrypting reverse cipher
 			cipherSelection = "Encrypting Reverse Cipher: <br>"
 			message = encReverseCipher(message)
 			results = cipherSelection + message
-			print(message)
 		elif (requestedEnc == "Homomorphic Encryption"): #homomorphic encryption
-			print('homomorphic encryption')
-			bit1 = int(output["homomorphic-method-type-1"])
-			bit2 = int(output["homomorphic-method-type-3"])
-			bit3 = int(output["homomorphic-method-type-2"])
-			bit4 = int(output["homomorphic-method-type-4"])
-			message += str(bit1)
-			message += str(bit2)
-			message += str(bit3)
-			message += str(bit4)
-			print(message)
-			results = str(homomorphicEnc(bit1, bit2, bit3, bit4))
+			s_bit1 = int(output["homomorphic-method-type-1"])
+			s_bit2 = int(output["homomorphic-method-type-3"])
+			a_bit1 = int(output["homomorphic-method-type-2"])
+			a_bit2 = int(output["homomorphic-method-type-4"])
+			message += str(s_bit1)
+			message += str(s_bit2)
+			message += str(a_bit1)
+			message += str(a_bit2)
+			results = str(homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2))
 
 			# cipherSelection = "Encrypting Using AES: <br>"
 			# results = cipherText
@@ -78,12 +73,10 @@ def encryption():
 			message = message.strip("}'{")
 			message = message.replace(",", "<br>")
 			results = cipherSelection + message
-			# print(message)
 		elif (requestedDec == "Reverse Cipher"): #decrypting reverse cipher
 			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = decReverseCipher(message)
 			results = cipherSelection + message
-			print(message)
 		# elif (requestedDec == "Homomorphic Decryption"): #homomorphic decryption
 		# 	print("homomorphic decryption")
 		# 	cipherSelection = "Decrytion of AES: <br>"
@@ -92,7 +85,6 @@ def encryption():
 		# 	print(plaintext)
 		else:
 			results = "Select an Encrytion/Decryption Method"
-			print("Select an Encryption/Decryption Scheme")
 			
 	return render_template("index.html", message = results)
 
@@ -100,7 +92,6 @@ def encryption():
 def encCaesarCipher(msg):
 	cipherMsg = ''
 	shiftNum = random.randint(1, 26)
-	print(shiftNum)
 
 	# traverse through the message
 	for i in range(len(msg)):
@@ -124,7 +115,6 @@ def encCaesarCipher(msg):
 			cipherMsg += char
 		
 	return cipherMsg
-	# return render_template("index.html", message = "Hello")
 
 # function to encrypt a reverse cipher message
 def encReverseCipher(msg):
@@ -145,7 +135,7 @@ def encAES(msg):
     return nonce, cipherText, tag
 
 # function to encrypt using homomorphic encryption
-def homomorphicEnc(bit1, bit2, bit3, bit4):
+def homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2):
 	r1 = randint(1, 5)
 	r2 = randint(1, 5)
 	r3 = randint(1, 5)
@@ -159,15 +149,13 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 	p = randint(10000, 20000) # private key
 	
 	# Equation: c = p*q + 2*r + m
-	c_bit_bit1 = q1 * p + 2 * r1 + bit1
-	c_bit_bit2 = q2 * p + 2 * r2 + bit2
-	c_bit_bit3 = q3 * p + 2 * r3 + bit3
-	c_bit_bit4 = q4 * p + 2 * r4 + bit4
+	c_bit_bit1 = q1 * p + 2 * r1 + s_bit1
+	c_bit_bit2 = q2 * p + 2 * r2 + s_bit2
+	c_bit_bit3 = q3 * p + 2 * r3 + a_bit1
+	c_bit_bit4 = q4 * p + 2 * r4 + a_bit2
 
 	# Truth Table
-	cipher_text = inv(c_bit_bit2)*c_bit_bit4 
-	+ inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 
-	+ inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
+	cipher_text = inv(c_bit_bit2)*c_bit_bit4 + inv(c_bit_bit2)*inv(c_bit_bit1)*c_bit_bit3 + inv(c_bit_bit1)*c_bit_bit4*c_bit_bit3
 
 	truth_table = "R Values: "
 	truth_table += str(r1) + " " + str(r2) + " " + str(r3) + " " + str(r4) + "<br>"
@@ -178,8 +166,8 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 
 	truth_table += "Input Bits" + "<br>"
 	truth_table += "---------------" + "<br>"
-	truth_table += "Bit 1: " + "   " + str(bit1) + "&emsp;" + "Bit 2: " + "   " + str(bit2) + "<br>"
-	truth_table += "Bit 3: " + "   " + str(bit3) + "&emsp;" + "Bit 4: " + "   " + str(bit4) + "<br><br>"
+	truth_table += "s_bit1: " + "   " + str(s_bit1) + "&emsp;" + "s_bit2: " + "   " + str(s_bit2) + "<br>"
+	truth_table += "a_bit1: " + "   " + str(a_bit1) + "&emsp;" + "a_bit2: " + "   " + str(a_bit2) + "<br><br>"
 
 	truth_table += "Cipher Bits" + "<br>"
 	truth_table += "---------------" + "<br>"
@@ -196,8 +184,8 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 
 	print("\nInput Bits")
 	print("---------------")
-	print("bit1:\t", bit1, "bit2:\t", bit2)
-	print("bit3:\t", bit3, "bit4:\t", bit4)
+	print("s_bit1:\t", s_bit1, "s_bit2:\t", s_bit2)
+	print("a_bit1:\t", a_bit1, "a_bit2:\t", a_bit2)
 
 	print("\nCipher Bits")
 	print("---------------")
@@ -212,12 +200,10 @@ def homomorphicEnc(bit1, bit2, bit3, bit4):
 	result = (cipher_text % p) % 2
 
 	# checks result
-	if (result == 0):
-		print("Siri does not have a higher salary than Alexa")
-		message = "Siri is not richer than Alexa"
+	if (result == 1):
+		message = "Alexa has a higher salary than Siri"
 	else:
-		print("Siri is richer than Alexa")
-		message = "Siri is richer than Alexa"
+		message = "Alexa is not richer than Siri"
 
 	return truth_table + str(result) + "<br>" + message
 
@@ -231,7 +217,6 @@ def decCaesarCipher(msg):
 	letters = "abcdefghijklmnopqrstuvwxyz"
 	LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	shiftNum = random.randint(1, 26)
-	print(shiftNum)
 	x = 0
 	decryptedDict = {}
 	
@@ -292,38 +277,6 @@ def decAES(nonce, cipherText, tag):
         return plaintext.decode('ascii') # decodes the text
     except:
         return False
-
-# edited out for now
-# def encryption2():
-# 	message = ''
-# 	if (request.method == "POST"):
-# 		# # getting input with name = fname in HTML form
-# 		message = request.form.get("message")
-# 		print(message)
-# 		# print(first_name + "\n")
-# 		# # getting input with name = lname in HTML form
-# 		# last_name = request.form.get("lname")
-# 		# print(last_name)
- 
-# 		# # generate a key for encryption and decryption 
-# 		# key = Fernet.generate_key()
-		
-# 		# # Fernet class with the key
-# 		# fernet = Fernet(key)
-		
-# 		# # string must be encoded to byte string before encryption
-# 		# encMessage = fernet.encrypt(message.encode())
-		
-# 		# print("Original string: ", message)
-# 		# print("Encrypted string: ", encMessage)
-		
-# 		# # Decode string with decode methods
-# 		# decMessage = fernet.decrypt(encMessage).decode()
-		
-# 		# print("decrypted string: ", decMessage)
-
-# 		#return "Encrypted " + message 
-# 	return render_template("index.html", message = "Encrypted " + message)
 
 if (__name__=='__main__'):
 	app.run(debug=True)
