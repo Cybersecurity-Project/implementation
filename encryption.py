@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 
 # importing Flask and other modules
 from flask import Flask, request, redirect, render_template, flash
-import random, sys
+import random
 from random import randint
 
 # import AES
@@ -11,6 +11,12 @@ from Crypto.Cipher import AES
 from secrets import token_bytes
 
 from flask.sessions import NullSession
+
+from base64 import b64encode, b64decode
+import hashlib
+from Cryptodome.Cipher import AES
+import os
+from Cryptodome.Random import get_random_bytes
 
 # 128 bits
 key = token_bytes(16)
@@ -35,14 +41,7 @@ def encryption():
 
 	if (request.method == "POST"):
 		output = request.form.to_dict()
-		message = output["message"]
-		# print(output)
-
-		# if (requestedEnc == "AES"):
-		# 	nonce, cipherText, tag = encAES(message)
-		# 	print(nonce)
-		# 	print(cipherText)
-		# 	print(tag)
+		message = output["message"] # retrieves message from text box
 
 		# checks which cipher was selected
 		if (requestedEnc == "Caesar Cipher"): #encrypting caesar cipher
@@ -63,10 +62,6 @@ def encryption():
 			message += str(a_bit1)
 			message += str(a_bit2)
 			results = str(homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2))
-
-			# cipherSelection = "Encrypting Using AES: <br>"
-			# results = cipherText
-			# print(cipherText)
 		elif (requestedDec == "Caesar Cipher"): #decrypting caesar cipher
 			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = str(decCaesarCipher(message))
@@ -77,12 +72,6 @@ def encryption():
 			cipherSelection = "Decrypting Caesar Cipher: <br>"
 			message = decReverseCipher(message)
 			results = cipherSelection + message
-		# elif (requestedDec == "Homomorphic Decryption"): #homomorphic decryption
-		# 	print("homomorphic decryption")
-		# 	cipherSelection = "Decrytion of AES: <br>"
-		# 	plaintext = decAES(nonce, cipherText, tag)
-		# 	results = plaintext
-		# 	print(plaintext)
 		else:
 			results = "Select an Encrytion/Decryption Method"
 			
@@ -127,13 +116,6 @@ def encReverseCipher(msg):
 		
 	return cipherMsg
 
-# function to encrypt using AES
-def encAES(msg):
-    cipher = AES.new(key, AES.MODE_EAX)
-    nonce = cipher.nonce
-    cipherText, tag = cipher.encrypt_and_digest(msg.encode('ascii')) #takes msg as bytes
-    return nonce, cipherText, tag
-
 # function to encrypt using homomorphic encryption
 def homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2):
 	r1 = randint(1, 5)
@@ -176,28 +158,11 @@ def homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2):
 
 	truth_table += "Cipher Results" + "<br>"
 	truth_table += "---------------" + "<br>"
-	truth_table += "Result: " + "   " + str(cipher_text) + "<br><br>"
-
-	print("R Values:\t", r1, r2, r3, r4)
-	print("Q Values:\t", q1, q2, q3, q4)
-	print("P Value:\t", p)
-
-	print("\nInput Bits")
-	print("---------------")
-	print("s_bit1:\t", s_bit1, "s_bit2:\t", s_bit2)
-	print("a_bit1:\t", a_bit1, "a_bit2:\t", a_bit2)
-
-	print("\nCipher Bits")
-	print("---------------")
-	print("a:\t", c_bit_bit1, "b:\t", c_bit_bit2)
-	print("c:\t", c_bit_bit3, "d:\t", c_bit_bit4)
-
-	print("\nCipher Result")
-	print("---------------")
-	print("Result:\t", cipher_text)
+	truth_table += "Cipher Text: " + "   " + str(cipher_text) + "<br><br><br>"
 
 	# decrypt value
-	result = (cipher_text % p) % 2
+	result = "Resulting value: "
+	result += str((cipher_text % p) % 2)
 
 	# checks result
 	if (result == 1):
@@ -266,17 +231,6 @@ def decReverseCipher(msg):
 		i -= 1
 		
 	return decMsg
-
-# function to decrypt an encrypted msg of AES
-def decAES(nonce, cipherText, tag):
-    cipher = AES.new(key, AES.MODE_EAX, nonce = nonce)
-    plaintext = cipher.decrypt(cipherText)
-
-    try:
-        cipher.verify(tag)
-        return plaintext.decode('ascii') # decodes the text
-    except:
-        return False
 
 if (__name__=='__main__'):
 	app.run(debug=True)

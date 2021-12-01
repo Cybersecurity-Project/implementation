@@ -3,7 +3,6 @@ function hideDEC() {
     check.classList.add("dont-show");
     var check2 = document.getElementById("encryption");
     check2.classList.remove("dont-show");
-    //console.log("hideDEC+showENC");
 }
 
 function hideENC() {
@@ -11,12 +10,10 @@ function hideENC() {
     check.classList.add("dont-show");
     var check2 = document.getElementById("decryption");
     check2.classList.remove("dont-show");
-    //console.log("hideENC+showDEC");
 }
 
 function resetResults() {
     var text = document.getElementById("results").innerHTML = "";
-    //console.log("hideENC+showDEC");
 }
 
 function check() {
@@ -55,41 +52,12 @@ function showInput() {
 function toggle() {
     var choice = document.getElementById("method-type");
     if (choice.value == "Homomorphic Encryption") {
-        //console.log("homomorphic");
         hideInput();
     }
     else {
-        //console.log("not homomorphic");
         showInput();
     }
 }
 
 toggle(); //do not remove because we need to run toggle() when page loads
 
-console.log(document.getElementById("gen-select-button").checked)
-
-let submit = getElementsByClassName(".generateButton");
-
-//shows message when generates message
-submit.addEventListener('click', (e) => {
-    // alert("HI");
-//     // e.preventDefault();
-//     // console.log(submit.textContent);
-//     // console.log("40");
-//     // $("p.resultHeader").show(); 
-//     // let x = document.getElementById("results").textContent;
-//     // console.log(x);
-//     // e.preventDefault();
-});
-
-// function showMsg() {
-//     $("p.resultHeader").show(); 
-// }
-
-// //runs function on page load
-// function hideMsg() {
-//     // let x = document.getElementById("resultMessage").textContent;
-//     $("p.resultHeader").hide(); 
-// }
-
-// window.onload = hideMsg;
