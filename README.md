@@ -1,4 +1,8 @@
 # __Processing Encrypted Data__
+
+## _Graphical User Interface:_
+[Processing Encrypted Data](http://52.91.201.108:8080/)
+
 ## _Overview:_
 This is a simple graphical user interface (GUI) that allows users to be able to view how certain encryption schemes work. This webpage was created with the use of HTML, CSS, and JavaScript. For implementation of the encryption schemes, Python was the main programming language as it had many packages to utilize. We also used Flask, a Python framework that made it possible to display our Python code to our web page. The main encryption algorithms used in the webpage are Caesar Cipher, Reverse Cipher, and Homomorphic Encryption. Another file called “scriptEncryption.py” in the repository is an algorithm for using AES to encrypt local files on your computer. 
 
