@@ -161,8 +161,9 @@ def homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2):
 	truth_table += "Cipher Text: " + "   " + str(cipher_text) + "<br><br><br>"
 
 	# decrypt value
-	result = "Resulting value: "
-	result += str((cipher_text % p) % 2)
+	resultingVal = "Resulting value: "
+	result = (cipher_text % p) % 2
+	resultingVal += str(result)
 
 	# checks result
 	if (result == 1):
