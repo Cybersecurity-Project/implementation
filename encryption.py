@@ -173,7 +173,7 @@ def homomorphicEnc(s_bit1, s_bit2, a_bit1, a_bit2):
 
 	return truth_table + str(result) + "<br>" + message
 
-# decrements value
+# inverse of value
 def inv(val):
 	return(val ^ 1)
 
@@ -234,5 +234,6 @@ def decReverseCipher(msg):
 	return decMsg
 
 if (__name__=='__main__'):
-	app.run(debug=True)
+	# app.run(debug=True) # for live update
+	app.run(host='0.0.0.0', port=8080) # for hosting
 
